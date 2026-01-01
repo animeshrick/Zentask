@@ -1,0 +1,87 @@
+# name: CI
+
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+# jobs:
+#   backend:
+#     name: Backend – Django
+#     runs-on: ubuntu-latest
+
+#     services:
+#       postgres:
+#         image: postgres:15
+#         env:
+#           POSTGRES_DB: jira
+#           POSTGRES_USER: jira
+#           POSTGRES_PASSWORD: jira
+#         ports:
+#           - 5432:5432
+#         options: >-
+#           --health-cmd="pg_isready -U jira"
+#           --health-interval=10s
+#           --health-timeout=5s
+#           --health-retries=5
+
+#     env:
+#       DATABASE_URL: postgres://jira:jira@localhost:5432/jira
+#       DJANGO_SETTINGS_MODULE: config.settings.test
+#       SECRET_KEY: test-secret-key
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: "3.11"
+
+#       - name: Install backend dependencies
+#         working-directory: backend
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r requirements.txt
+
+#       - name: Run migrations
+#         working-directory: backend
+#         run: |
+#           python manage.py migrate --noinput
+
+#       - name: Run backend tests
+#         working-directory: backend
+#         run: |
+#           pytest
+
+#   frontend:
+#     name: Frontend – Flutter
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: "3.22.0"
+#           channel: stable
+
+#       - name: Install frontend dependencies
+#         working-directory: frontend
+#         run: flutter pub get
+
+#       - name: Enforce formatting
+#         working-directory: frontend
+#         run: flutter format --set-exit-if-changed .
+
+#       - name: Static analysis
+#         working-directory: frontend
+#         run: flutter analyze
+
+#       - name: Run frontend tests
+#         working-directory: frontend
+#         run: flutter test
