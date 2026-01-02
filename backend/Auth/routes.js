@@ -8,6 +8,8 @@ router.get("/v1", (req, res) => {
 
 router.get("/v1", (req, res) => {
     log("Server starting", {data: "maww"}, "mauu1212");
+
+router.get("/v1", (req, res) => {
     res.json({ message: "Auth API V1" });
 });
 
