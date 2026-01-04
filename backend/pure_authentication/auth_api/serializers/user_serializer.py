@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         email = data.get("email")
         password = data.get("password")
         username = data.get("username")
-        account_type = data.get("account_type")
+        # account_type = data.get("account_type")
 
         # Email Validation
         if email and email != "" and isinstance(email, str):
@@ -42,8 +42,8 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(detail="Password should not be empty.")
 
         # Account Type Validation
-        if not account_type or account_type == "":
-            data["account_type"] = "regular"
+        # if not account_type or account_type == "":
+        #     data["account_type"] = "regular"
 
         return True
 
@@ -52,14 +52,14 @@ class UserSerializer(serializers.ModelSerializer):
             email = data.get("email")
             password = data.get("password")
             username = data.get("username")
-            account_type = data.get("account_type")
-            if account_type and not isinstance(account_type, str):
-                account_type = account_type.value
+            # account_type = data.get("account_type")
+            # if account_type and not isinstance(account_type, str):
+            #     account_type = account_type.value
 
             user = User(
                 username=username,
                 email=email,
-                account_type=account_type,
+                # account_type=account_type,
                 password=EncryptionServices().encrypt(password),
                 is_active=True,
             )
