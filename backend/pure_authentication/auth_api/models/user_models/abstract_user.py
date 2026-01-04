@@ -9,13 +9,13 @@ class AbstractUser(GenericBaseModel):
     email = models.EmailField(
         verbose_name="Email", max_length=255, unique=True, null=False
     )
-    # account_type = models.CharField(
-    #     max_length=10, choices=AccountType.choices, default=AccountType.REGULAR
-    # )
+    account_type = models.CharField(
+        max_length=10, choices=AccountType.choices, default=AccountType.REGULAR
+    )
     name = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=False)
-    # address = models.CharField(max_length=500, null=True)
-    # pincode = models.CharField(max_length=6, null=True, default="713216")
+    address = models.CharField(max_length=500, null=True)
+    pincode = models.CharField(max_length=6, null=True, default="713216")
     lat = models.CharField(max_length=20, null=True)
     lan = models.CharField(max_length=20, null=True)
     dob = models.DateField(null=True)

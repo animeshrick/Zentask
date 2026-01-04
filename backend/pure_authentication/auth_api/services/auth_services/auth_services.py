@@ -188,16 +188,16 @@ class AuthServices:
                 user.phone = request_data.phone
             else:
                 raise ValueError(validate_phone(phone=request_data.phone).error)
-        # if (
-        #     request_data.address
-        #     and isinstance(request_data.address, str)
-        #     and request_data.address != ""
-        #     and request_data.address != user.address
-        # ):
-        #     if validate_address(address=request_data.address).is_validated:
-        #         user.address = request_data.address
-        #     else:
-        #         raise ValueError(validate_address(address=request_data.address).error)
+        if (
+            request_data.address
+            and isinstance(request_data.address, str)
+            and request_data.address != ""
+            and request_data.address != user.address
+        ):
+            if validate_address(address=request_data.address).is_validated:
+                user.address = request_data.address
+            else:
+                raise ValueError(validate_address(address=request_data.address).error)
         user.save()
         return ExportUser(**user.model_to_dict())
 
