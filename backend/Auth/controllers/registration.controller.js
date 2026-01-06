@@ -1,13 +1,25 @@
-const prisma = require("prisma/config");
+const prisma = require("../services/db");
 const { hashPassword, verifyPassword } = require("../services/password");
 
 
 class AuthController {
     static async register(req , res){
-        let email = req.email;
-        let passwordHash = await hashPassword(req.password);
-        let create_user = prisma.user.create({data: { email, credentials: { create: {provider: "email", passwordHash,}}}});
-        return create_user;
+        let email = res.email;
+        let passwordHash = await hashPassword(res.password);
+        console.log("mauuu:", Object.keys(prisma));
+        const createUser = await prisma.user.create({
+            data: {
+                email,
+                credentials: {
+                    create: {
+                        provider: "email",
+                        passwordHash,
+                    },
+                },
+            },
+        });
+
+        return createUser;
     }
 
     static async login({ email, password }) {
@@ -27,7 +39,7 @@ class AuthController {
         if (!valid) throw new Error("Invalid credentials");
 
         return credential.user;
-  }
+    }
 }
 
 module.exports = AuthController;

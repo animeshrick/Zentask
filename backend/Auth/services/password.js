@@ -3,12 +3,10 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 12;
 
 async function hashPassword(password) {
-    console.log(`hashPassword: ${password}`);
   return bcrypt.hash(password, SALT_ROUNDS);
 }
 
 async function verifyPassword(password, hash) {
-    console.log(`verifyPassword: ${password} ${hash}`);
   return bcrypt.compare(password, hash);
 }
 
