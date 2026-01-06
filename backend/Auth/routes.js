@@ -5,12 +5,6 @@ const AuthController = require("./controllers/registration.controller");
 
 router.get("/v1", (req, res) => {
     log("Server starting", {data: "maww"}, "mauu1212");
-
-router.get("/v1", (req, res) => {
-    log("Server starting", {data: "maww"}, "mauu1212");
-
-router.get("/v1", (req, res) => {
-    log("Server starting", {data: "maww"}, "mauu1212");
     res.json({ message: "Auth API V1" });
 });
 
