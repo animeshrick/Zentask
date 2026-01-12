@@ -49,27 +49,26 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "pure_authentication.admin_logging.AdminLoggingMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware"
 ]
 
 ROOT_URLCONF = "pure_authentication.urls"
 
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "pure_authentication" / "templates"],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
-        },
-    },
-]
+# TEMPLATES = [
+#     {
+#         "BACKEND": "django.template.backends.django.DjangoTemplates",
+#         "DIRS": [BASE_DIR / "pure_authentication" / "templates"],
+#         "APP_DIRS": True,
+#         "OPTIONS": {
+#             "context_processors": [
+#                 "django.template.context_processors.debug",
+#                 "django.template.context_processors.request",
+#                 "django.contrib.auth.context_processors.auth",
+#                 "django.contrib.messages.context_processors.messages",
+#             ],
+#         },
+#     },
+# ]
 
 WSGI_APPLICATION = "pure_authentication.wsgi.application"
 
@@ -188,7 +187,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
-    "https://effulgent-baklava-87d356.netlify.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
