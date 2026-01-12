@@ -7,6 +7,8 @@ from auth_api.views.update_password import UpdatePasswordView
 from auth_api.views.update_profile import UpdateProfileView
 from auth_api.views.user_details import UserDetailView
 
+from auth_api.views.secure_register import SecureRegisterUsersView
+
 urlpatterns = [
     path("register", RegisterUsersView.as_view(), name="Register"),
     path("login", LoginView.as_view(), name="Login"),
@@ -15,5 +17,9 @@ urlpatterns = [
 
     path("update_password", UpdatePasswordView.as_view(), name="Change-User-Password"),
     path("update_profile", UpdateProfileView.as_view(), name="Update-User-profile"),
+
+    # --------------- Secure Endpoints with JWT ---------------
+
+    path("secure_register", SecureRegisterUsersView.as_view(), name="Secure Register"),
 
 ]
